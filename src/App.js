@@ -1,15 +1,18 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import './App.css';
+import { createBrowserRouter,RouterProvider } from 'react-router-dom';
 import Banner from './components/Banner/Banner';
-import Header from './components/Header/Header';
 import Inventory from './components/Inventory/Inventory';
+import Login from './components/Login/Login';
 import Orders from './components/Orders/Orders';
+import ShippingPage from './components/ShippingPage/ShippingPage';
 import Shop from './components/Shop/Shop';
+import Signup from './components/Signup/Signup';
 import getProductAndCart from './components/Utilities/productAndCart';
 import Main from './Layout/Main';
+import PrivateRoute from './routes/PrivateRoute';
+// import Login from './components/signup'
 
 function App() {
-  let router=createBrowserRouter([
+  const router=createBrowserRouter([
     {
       path:'/',
       element:<Main></Main>,
@@ -22,7 +25,10 @@ function App() {
         {path:'orders',
         loader:getProductAndCart,
         element:<Orders></Orders>},
-        {path:'inventory',element:<Inventory></Inventory>}
+        {path:'inventory',element:<PrivateRoute><Inventory></Inventory></PrivateRoute>},
+        {path:'/signup',element:<Signup></Signup>},
+        {path:'login',element:<Login></Login>},
+        {path:'/shipping',element:<PrivateRoute><ShippingPage></ShippingPage></PrivateRoute>}
       ]
     }
   ])

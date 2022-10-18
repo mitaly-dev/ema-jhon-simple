@@ -1,3 +1,5 @@
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
@@ -30,12 +32,15 @@ const Orders = () => {
             {
                 cart.length===0 && (
                 <h3 className='text-center text-3xl font-semibold'>No Items for review ,Please <Link to="/shop" className='text-violet-800 underline'>Shop Now</Link></h3>
-        
                 )
             }
         </div>
         <div className='col-span-1 bg-[#FFE0B3] py-10 px-5'>
-           <OrderSummary cart={cart} clearCart={clearCart}></OrderSummary>
+           <OrderSummary cart={cart} clearCart={clearCart}>
+                    <Link to='/shipping' className="px-[66px] py-3 font-medium text-lg w-full bg-[#FF9900] rounded-md capitalize mt-3">Shipping
+                    <span className='pl-2'><FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon></span>
+                    </Link>
+           </OrderSummary>
         </div>
     </div>
     );
